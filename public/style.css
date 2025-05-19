@@ -1,0 +1,131 @@
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #4a90e2 0%, #a0c8f7 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: #0c234b;
+}
+
+.container {
+  background: #e8f1ff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+h1 span {
+  font-size: 2.8rem;
+}
+
+.subtitle {
+  font-weight: 500;
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+  color: #1a2c60;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  text-align: left;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #0c234b;
+}
+
+input[type='email'],
+textarea {
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 2px solid #4a90e2;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  resize: none;
+}
+
+input[type='email']:focus,
+textarea:focus {
+  outline: none;
+  border-color: #1a56db;
+  box-shadow: 0 0 8px #1a56dbaa;
+}
+
+button {
+  background-color: #1a56db;
+  color: white;
+  font-weight: 700;
+  padding: 14px 0;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease, transform 0.15s ease;
+}
+
+button:hover:not(:disabled) {
+  background-color: #1246a2;
+  transform: scale(1.05);
+}
+
+button:disabled {
+  background-color: #7a9bd6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+#notificationResult {
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 15px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.hidden {
+  display: none;
+}
+
+.success {
+  color: #155724;
+  background-color: #d4edda;
+  border: 1.5px solid #c3e6cb;
+  box-shadow: 0 0 12px #a8d5a7;
+}
+
+.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1.5px solid #f5c6cb;
+  box-shadow: 0 0 12px #e3a1a8;
+}
+
+.note {
+  margin-top: 25px;
+  font-size: 0.9rem;
+  color: #243a5a;
+  font-style: italic;
+}

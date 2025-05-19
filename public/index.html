@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PingPilot  - Your Email Notification Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>PingPilot <span>🚀</span></h1>
+    <p class="subtitle">
+      Need to send an email notification in just a click? PingPilot has your back!
+    </p>
+
+    <form id="notificationForm">
+      <label for="email">Enter Email Address</label>
+      <input type="email" id="email" name="userId" placeholder="example@gmail.com" required />
+
+      <label for="message">Message</label>
+      <textarea id="message" name="message" placeholder="Type your message here..." rows="4" required></textarea>
+
+      <input type="hidden" name="type" value="email" />
+
+      <button type="submit" id="sendBtn">Send Notification</button>
+    </form>
+
+    <div id="notificationResult" class="hidden"></div>
+
+    <small class="note">
+      ⚠️ Just enter the recipient’s email and message, then hit send — PingPilot takes care of the rest.
+    </small>
+  </div>
+
+  <script>
+    const form = document.getElementById('notificationForm');
+    const result = document.getElementById('notificationResult');
+    const sendBtn = document.getElementById('sendBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      sendBtn.disabled = true;
+      sendBtn.textContent = 'Sending...';
+
+      const formData = new FormData(form);
+      const data = {
+        userId: formData.get('userId'),
+        type: formData.get('type'),
+        message: formData.get('message'),
+      };
+
+      try {
+        const response = await fetch('/notifications', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+
+        const json = await response.json();
+
+        if (response.ok) {
+          result.className = 'success';
+          result.innerHTML = '✅ <strong>Email sent successfully!</strong> PingPilot just did the magic! ✨';
+          form.reset();
+        } else {
+          result.className = 'error';
+          result.innerHTML = '❌ <strong>Oops! Something went wrong:</strong> ' + (json.error || 'Unknown error');
+        }
+      } catch (error) {
+        result.className = 'error';
+        result.innerHTML = '❌ <strong>Network error:</strong> ' + error.message;
+      } finally {
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Send Notification';
+        result.classList.remove('hidden');
+      }
+    });
+  </script>
+</body>
+</html>
